@@ -93,22 +93,27 @@ public class NotaGenerator {
                    
                     System.out.println("Masukkan berat cucian Anda [Kg]:");
                    
-                    int beratCuci = 0;
-                     
-                    try{
-                        beratCuci = input.nextInt();
-                        input.nextLine();
+                    int beratCuci;
+                    beratCuci = 0;
+                    while(true){ //coba berat cucian
+                        try{
+                            beratCuci = input.nextInt();
+                            input.nextLine();
+                        }
+                        catch(Exception e){
+                            input.nextLine();
+                            System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
+                            continue;
+                        }
+                        if(beratCuci<0){ //jika kurang dari 0
+                            System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
+                            
+                        }
+                        else{ // jika sudah valid
+                            break;
+                        }
+
                     }
-                    catch(Exception e){
-                        input.nextLine();
-                        System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
-                    }
-                        
-                    beratCuci = input.nextInt();
-                    input.nextLine();
-                    
-                    
-                    
                     
                     String hasil = generateNota(id, laundry, beratCuci, terima);
                     System.out.println(hasil);
@@ -126,7 +131,7 @@ public class NotaGenerator {
     
             }
             
-            else {
+            else { //jika perintah tidak diketahui
                     System.out.println("================================");
                     System.out.println("Perintah tidak diketahui, silakan periksa kembali.");
                 }
@@ -180,8 +185,14 @@ public class NotaGenerator {
         int total = 0;
         int temp;
             for(int i = 0 ;i<=len-1;i++){ // mencari total nilai dari string
-                temp = x[i] - 'A'+ 1;
-                total +=temp;
+                if((int)(x[i])>=65 && (int)x[i]<=90){//jika huruf besar A-z
+                    temp = x[i] - 'A'+ 1;
+                    total +=temp;
+                }
+                else{ //jika bukan aplhabet
+                    total +=7;
+                }
+              
             
             }
 
