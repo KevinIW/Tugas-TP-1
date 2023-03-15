@@ -233,8 +233,7 @@ public class MainMenu {
     private static void handleAmbilCucian() {
         
         System.out.println("Masukan ID nota yang akan diambil: ");
-        int idNota;
-        idNota = 0;
+        int idNota = 0;
         Boolean success = true;
         while(success){ //coba berat cucian
             try{
@@ -242,20 +241,40 @@ public class MainMenu {
                 input.nextLine();
             }
             catch(Exception e){
-                input.nextLine();
-                success = false;
                 System.out.println("ID nota berbentuk angka!");
-                return;
-                
-                
-
-                
+                input.nextLine();
+                continue;
             }
             success = false;
             
 
+}
+
+        if(success == false){
+            Nota nota = cariNota(idNota);
+            int index = 0;
+        
+            if(nota == null){
+                System.out.printf("Nota dengan ID %d tidak ditemukan!\n",idNota);
+            }
+            else{
+                for(int i=0;i<notaList.size();i++){
+                    if(idNota == notaList.get(i).getIdnota()){
+                        index = i;
+                        break;
+                    }
+                }
+                if(nota.isReady()){
+                    System.out.printf("Nota dengan ID %d berhasil diambil!\n",idNota);
+                    
+                    notaList.remove(index);
+                }
+                else{
+                    System.out.printf("Nota dengan ID %d gagal diambil!\n",idNota);
+                }
+            }
         }
-        Nota nota = cariNota(idNota);
+  /*       Nota nota = cariNota(idNota);
         int index = 0;
     
         if(nota == null){
@@ -277,6 +296,7 @@ public class MainMenu {
                 System.out.printf("Nota dengan ID %d gagal diambil!\n",idNota);
             }
         }
+        */
       
         
       
