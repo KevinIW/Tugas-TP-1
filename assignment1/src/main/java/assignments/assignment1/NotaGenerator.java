@@ -25,12 +25,12 @@ public class NotaGenerator {
             
             if(pilihan == '1' || pilihan == '2'){ //memilih pilihan 1 atau pilihan 2
                 System.out.print("================================\n");
-                System.out.print("Masukkan nama Anda:\n");
+                System.out.print("Masukkan nama Anda: ");
                 
                 String nama = input.nextLine();
 
-                System.out.print("Masukkan nomor handphone Anda:\n");
-                String handphone = input.next();
+                System.out.print("Masukkan nomor handphone Anda: ");
+                String handphone = input.nextLine();
                 Boolean checker = true;
                 while(checker){ //check nomor HP 
                     char[] m = handphone.toCharArray(); 
