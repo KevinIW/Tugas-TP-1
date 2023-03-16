@@ -9,7 +9,7 @@ import java.text.ParseException;
 import assignments.assignment1.NotaGenerator;
 
 public class Nota {
-    
+    //constructor class nota
     private Member member;
     private String paket;
     private String tanggalMasuk;
@@ -24,9 +24,10 @@ public class Nota {
         this.berat = berat;
         this.tanggalMasuk = tanggalMasuk;
         this.idNota = idNota;
-        member.tambahBonusCounter();
+        member.tambahBonusCounter(); //tambah bonus counter
         setsisaHariPengerjaaan(paket);
     }
+    //getter setter nya
     public String getPaket(){
         return this.paket;
     }
@@ -45,7 +46,7 @@ public class Nota {
     }
 
     public void setsisaHariPengerjaaan(String paket){
-       
+       //set awal sisa hari pengerjaan
 
         int hari = 0;
         if(paket.equals("express")) {
@@ -71,11 +72,11 @@ public class Nota {
     }
 
     
-    public void setSisaHari(int hari){
+    public void setSisaHari(int hari){//set sisa hari
         this.sisaHariPengerjaan = hari;
     }
 
-    public Boolean isReady(){
+    public Boolean isReady(){ //jika nota sudah bs diambil
         if(this.sisaHariPengerjaan<=0) return true;
         return false;
     }
@@ -109,7 +110,7 @@ public class Nota {
         }
         int hargaTotal = harga * berat;
         String formatStr3 = "";
-        if(member.getBonusCounter() == 3){
+        if(member.getBonusCounter() == 3){ //jika bonus counter sudah 3
             
             formatStr3 = String.format("%d kg x %d = %d = %d  (Discount member 50 persen !!!) \n", berat, harga, hargaTotal, hargaTotal/2);
         }

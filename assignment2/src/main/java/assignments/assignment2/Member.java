@@ -3,7 +3,7 @@ package assignments.assignment2;
 import assignments.assignment1.NotaGenerator;
 
 public class Member {
-
+    //constructor class ini
     private String nama;
     private String noHp;
     private int bonusCounter = 0;
@@ -14,7 +14,7 @@ public class Member {
         this.bonusCounter = bonusCounter;
 
     }
-
+    //getter setternya
    
 
     public String getId(){
@@ -31,11 +31,11 @@ public class Member {
     }
     public void tambahBonusCounter(){
         if(this.bonusCounter >= 3){
-            resetBonusCounter();
+            resetBonusCounter(); //reset ke 1 
         }
         else
         {
-            this.bonusCounter+=1;
+            this.bonusCounter+=1; //increment 1 tiap pesanaan
         }
        
         
