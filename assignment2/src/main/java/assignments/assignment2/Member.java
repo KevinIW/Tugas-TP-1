@@ -14,7 +14,7 @@ public class Member {
         this.bonusCounter = bonusCounter;
 
     }
-    //getter setternya
+    //getter setternya setiap constructor
    
 
     public String getId(){

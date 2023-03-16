@@ -127,13 +127,14 @@ public class MainMenu {
 
         if(isMember){ //jika ada id member
             Boolean laundry1 = true;
-            String laundry =  "";
+            String laundryx =  "";
+            String laundry = "";
             while(laundry1) //check laundry
             {
                 System.out.println("Masukkan paket laundry: ");
                 
-                laundry = input.next();
-                laundry = laundry.toLowerCase(); //ke lower case krn sifat insensitive
+                laundryx = input.next();
+                laundry = laundryx.toLowerCase(); //ke lower case krn sifat insensitive
                 if(laundry.equals("?"))
                 {
                     showPaket();
@@ -145,7 +146,7 @@ public class MainMenu {
                 }
                 else{
                     
-                    System.out.printf("Paket %s tidak diketahui\n", laundry);
+                    System.out.printf("Paket %s tidak diketahui\n", laundryx);
                     System.out.println("[ketik ? untuk mencari tahu jenis paket]");
                 }
             }
@@ -176,7 +177,7 @@ public class MainMenu {
 
             }
             Member member = cariMember(id); //cari member dengan id
-            Nota nota = new Nota(member,laundry,beratCuci,fmt.format(cal.getTime()),totalNota); 
+            Nota nota = new Nota(member,laundryx,beratCuci,fmt.format(cal.getTime()),totalNota); 
             notaList.add(nota); //masukan ke class nota
             totalNota++;
             System.out.println(nota.getNota()); //print notanya
@@ -200,11 +201,11 @@ public class MainMenu {
             System.out.printf(" Terdaftar %d nota dalam sistem. \n", notaList.size());
             for(Nota nota : notaList){ //loop setiap nota yg ad di notaList
                 if(nota.isReady()){ //jika nota sudah bisa diambil
-                    System.out.printf("- [%d] Status      	: Sudah bisa diambil :) \n ",nota.getIdnota());
+                    System.out.printf("- [%d] Status      	: Sudah bisa diambil! \n",nota.getIdnota());
                 }
                 else
                 {
-                    System.out.printf("- [%d] Status      	: Belum bisa diambil :) \n",nota.getIdnota());
+                    System.out.printf("- [%d] Status      	: Belum bisa diambil :( \n",nota.getIdnota());
                 }
             }
         }
@@ -237,28 +238,29 @@ public class MainMenu {
         
         System.out.println("Masukan ID nota yang akan diambil: ");
         int idNota = 0;
+        String idN ="";
         Boolean success = true;
-        while(success){ //coba berat cucian
+        while(success){ //coba ID nota
             try{
-                idNota = input.nextInt();
-                input.nextLine();
+                idN =  input.nextLine();
+
+                idNota = Integer.parseInt(idN);
+                
             }
             catch(Exception e){ // jika id nota bukan angka
                 System.out.println("ID nota berbentuk angka!");
-                input.nextLine();
+                
                 continue;
             }
             success = false;
-            
-
-}
+        }
 
         if(success == false){ //jika sudah berhasil validasi nota
             Nota nota = cariNota(idNota);
             int index = 0;
         
             if(nota == null){ //jika saat dicari nota gk ketemu
-                System.out.printf("Nota dengan ID %d tidak ditemukan!\n",idNota);
+                System.out.printf("Nota dengan ID %s tidak ditemukan!\n",idN);
             }
             else{
                 for(int i=0;i<notaList.size();i++){ //cari index nota
@@ -291,7 +293,7 @@ public class MainMenu {
         }
         for(Nota nota : notaList){
             if(nota.getSisaHari() <= 0){ //jika sudah bisa diambil
-                System.out.printf("Laundry dengan nota ID %d sudah dapat diambil.\n ",nota.getIdnota());
+                System.out.printf("Laundry dengan nota ID %d sudah dapat diambil.\n",nota.getIdnota());
             }
         }
 

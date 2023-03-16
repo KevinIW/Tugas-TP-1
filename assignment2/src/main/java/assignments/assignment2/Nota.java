@@ -27,7 +27,7 @@ public class Nota {
         member.tambahBonusCounter(); //tambah bonus counter
         setsisaHariPengerjaaan(paket);
     }
-    //getter setter nya
+    //getter setter nya setiap element yang ada di constructor
     public String getPaket(){
         return this.paket;
     }
@@ -49,7 +49,8 @@ public class Nota {
        //set awal sisa hari pengerjaan
 
         int hari = 0;
-        if(paket.equals("express")) {
+        paket = paket.toLowerCase();
+        if(paket.equals("express")) { //set sisa hari nya brp
             
             hari = 1;
         }
@@ -66,7 +67,7 @@ public class Nota {
 
     }
 
-    public int getSisaHari(){
+    public int getSisaHari(){//get sisa hari
         return this.sisaHariPengerjaan;
         
     }
@@ -83,18 +84,21 @@ public class Nota {
 
      public  String generateNota(String id, String paket, int berat, String tanggalTerima, int idNota){
        
-        String nota = "Berhasil menambahkan nota!\n ";
+        String nota = "Berhasil menambahkan nota!\n";
         String formatStr0 = String.format("[ID Nota = %d]\n",idNota);
         String awal = "";
         String tengah="Harga :\n";
+        String paketx = paket; //simpen yg asli
+        paket = paket.toLowerCase(); //simpen yg lower case
         String formatStr1 = String.format("ID    :  %s\n", id);
-        String formatStr2 = String.format("Paket : %s\n",paket);
+        String formatStr2 = String.format("Paket : %s\n",paketx);
         if(berat<2){//jika berat kurang 2
             berat = 2;
             awal = "Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg\n";
         }
         int harga;
         int hari;
+        
         if(paket.equals("express")) {
             harga = 12000;
             hari = 1;
@@ -135,7 +139,7 @@ public class Nota {
         cal.add(Calendar.DAY_OF_MONTH, hari);  //menanmbah hari di calendar
         String tanggalJadi = sdf.format(cal.getTime()); 
 
-        String formatStr5 = String.format("Tanggal Selesai  : %s\n", tanggalJadi);
+        String formatStr5 = String.format("Tanggal Selesai : %s\n", tanggalJadi);
         String status = "Status      	: Belum bisa diambil :(";
         
         nota = (awal + nota + formatStr0 + formatStr1 + formatStr2 + tengah + formatStr3 + formatStr4 + formatStr5 + status);
