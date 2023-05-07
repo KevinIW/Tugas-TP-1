@@ -41,8 +41,9 @@ public class EmployeeSystem extends SystemCLI {
             System.out.printf("Stand back! %s beginning to nyuci!\n",loginMember.getNama());
             for( Nota nota : notaList){
                String buat = nota.kerjakan();
-               System.out.printf("Nota %d : %s", nota.getId() , buat);
+               System.out.printf("Nota %d : %s \n", nota.getId() , buat);
             }
+        
             return false;
         }
         else if( choice == 2){

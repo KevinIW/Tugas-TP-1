@@ -15,10 +15,11 @@ public class NotaManager {
      */
     public static void toNextDay(){
         //TODO: implement skip hari
-        for(int i = 0 ; i<notaList.length;i++){
-            notaList.get(i).toNextDay();
-            
+
+        for(Nota nota : notaList){
+            nota.toNextDay();
         }
+        
         cal.add(Calendar.DAY_OF_MONTH,1);
     }
 

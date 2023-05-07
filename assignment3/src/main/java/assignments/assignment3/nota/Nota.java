@@ -48,6 +48,9 @@ public class Nota {
 
         
         for( LaundryService service : services){
+
+
+            
             if(!service.isDone()){
                 return service.doWork();
                 
@@ -55,14 +58,22 @@ public class Nota {
             else{
                 continue;
             }
+            
         }
-        isDone = true;
+        this.isDone = true;
 
         
         return "Sudah Selesai";
     }
     public void toNextDay() {
-        this.sisaHariPengerjaan-=1;
+        String test = getNotaStatus();
+        if(isDone){
+
+        }
+        else{
+            this.sisaHariPengerjaan-=1;
+        }
+       
 
     
     }
@@ -82,6 +93,12 @@ public class Nota {
             }
            
         }
+        else{
+            if(this.sisaHariPengerjaan<0){
+                total = total + 2000*this.sisaHariPengerjaan;
+            }
+
+        }
 
         return total;
     }
@@ -93,6 +110,7 @@ public class Nota {
                 return "Belum Selesai";
             }
         }
+        this.isDone = true;
         return "Sudah Selesai";
 
         
@@ -133,6 +151,7 @@ public class Nota {
             serviceList = serviceList + line7;
         }
 
+        String test = getNotaStatus();
         if(!this.isDone){
             if(this.sisaHariPengerjaan<0){
                 int hari = this.sisaHariPengerjaan *-1;
@@ -144,6 +163,19 @@ public class Nota {
                 serviceList = serviceList + selesai;
             }
             
+        }
+        else{
+
+            if(this.sisaHariPengerjaan<0){
+                int hari = this.sisaHariPengerjaan *-1;
+                String kompensasi = String.format("Harga Akhir: %d Ada Kompensasi keterlambatan %d x 2000 hari \n", calculateHarga(), hari);
+                serviceList = serviceList + kompensasi;
+            }
+            else{
+                String selesai = String.format("Harga Akhir : %d \n", calculateHarga());
+                serviceList = serviceList + selesai;
+            }
+
         }
         String hasil = line1 + line2 + line3 + line4 + line5 + line6 + serviceList;
 
@@ -183,7 +215,7 @@ public class Nota {
     public void setsisaHariPengerjaaan(String paket){
         //set awal sisa hari pengerjaan
  
-         int hari = 0;
+         
          paket = paket.toLowerCase();
          if(paket.equals("express")) { //set sisa hari nya brp
              
@@ -201,7 +233,7 @@ public class Nota {
              this.hari = 3;
              this.baseHarga = 7000;
          }
-         this.sisaHariPengerjaan = hari;
+         this.sisaHariPengerjaan = this.hari;
  
      }
 
