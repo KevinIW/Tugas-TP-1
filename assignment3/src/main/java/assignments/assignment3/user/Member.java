@@ -25,7 +25,7 @@ public class Member {
      * @return true jika ID dan password sesuai dengan instance member, false jika tidak.
      */
     public boolean login(String id, String password) {
-        return id.equals(this.id) && authenticate(password);
+        return id.equals(this.id) && authenticate(password); //cek apakah sama dan valid
     }
 
     /**
@@ -34,8 +34,8 @@ public class Member {
      * @param nota Nota object untuk ditambahkan.
      */
     public void addNota(Nota nota) {
-        // TODO
-        notaList.add(nota);
+    
+        notaList.add(nota); //masukkan ke arrayList Nota
     }
 
     /**

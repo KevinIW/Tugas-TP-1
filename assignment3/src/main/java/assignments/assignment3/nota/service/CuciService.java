@@ -4,7 +4,7 @@ public class CuciService implements LaundryService{
     public boolean sekali = false;
     @Override
     public String doWork() {
-        // TODO
+        //lgsg true setelah do work
         sekali = true;
         return "Sedang mencuci";
     }
@@ -12,13 +12,13 @@ public class CuciService implements LaundryService{
     @Override
     public boolean isDone() {
         
-        if(sekali) return true;
+        if(sekali) return true; //jika sdh sls
         return false;
     }
 
     @Override
     public long getHarga(int berat) {
-        // TODO
+        //lgsg return 0 krn sdh dihitung
         return 0;
     }
 

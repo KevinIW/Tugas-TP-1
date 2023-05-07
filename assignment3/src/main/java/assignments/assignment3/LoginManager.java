@@ -41,12 +41,12 @@ public class LoginManager {
      */
     public Member register(String nama, String noHp, String password) {
 
-        String id = generateId(nama,noHp);
+        String id = generateId(nama,noHp); //ambil id seperti TP 1
         SystemCLI checker = getSystem(id);
 
-        if(checker == null){
+        if(checker == null){ // nge check apakah kosong atau sudah ada
             Member member = new Member(nama,id,password);
-            memberSystem.addMember(member);
+            memberSystem.addMember(member); //masukan ke arrayList member jika blm ada
             return member;
 
         }
@@ -54,12 +54,12 @@ public class LoginManager {
 
     }
 
-    public static String generateId(String nama, String nomorHP){
+    public static String generateId(String nama, String nomorHP){ //generate ID seperti TP 1
         
         
         String arr[] = nama.split(" ",2);
         String firstword = arr[0];
-        firstword = firstword.toUpperCase(); //ke Upperacse
+        firstword = firstword.toUpperCase(); //ke Uppercase
         char[] x = firstword.toCharArray(); //jadikan array of characters
         int len = x.length;
         int total = 0;

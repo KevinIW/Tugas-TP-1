@@ -24,14 +24,15 @@ public class MemberSystem extends SystemCLI {
         boolean logout = false;
        
         
-        if(choice == 3){
-            return true;
+        if(choice == 3){ //jika user pilih choice 3
+            return true; // logout
         }
         else if(choice == 1){
             
             
-            System.out.println("Masukkan paket laundry: ");
+            System.out.println("Masukkan paket laundry: "); //sesuai permintaan template
             showPaket();
+            //anggapan dijamin valid
             String paket = in.nextLine();
             paket = paket.toLowerCase();
             System.out.println("Masukan berat cucian anda [Kg]: ");
@@ -56,25 +57,25 @@ public class MemberSystem extends SystemCLI {
             Nota nota = new Nota(loginMember,berat,paket,tanggal);
             
             if(!setrika.equals("x")){
-                SetrikaService service2 = new SetrikaService();
+                SetrikaService service2 = new SetrikaService(); //jika bukan x bikin service setrika
                 nota.addService(service2);
 
             }
 
-            if(!antar.equals("x")){
+            if(!antar.equals("x")){ //jika bukan x bikin service antar
                 AntarService service3 = new AntarService();
                 nota.addService(service3);
 
             }
-            NotaManager.addNota(nota);
-            loginMember.addNota(nota);
-            return false;
+            NotaManager.addNota(nota); //add ke notamanager
+            loginMember.addNota(nota); // add ke loginMember
+            return false; //tidak logout
         }
         else if(choice == 2){
             for(Nota nota : loginMember.getNotaList()){
-                System.out.println(nota.toString());
+                System.out.println(nota.toString()); //print semua nota member
             }
-            return false;
+            return false; //tidak logout
         }
         return true;
     
@@ -96,18 +97,9 @@ public class MemberSystem extends SystemCLI {
      * @param member -> Member baru yang akan ditambahkan.
      */
     public void addMember(Member member) {
-        // TODO
+        //add member
         memberList.add(member);
-        /*Member [] temp = new Member [memberList.length];
-        for(int i = 0; i< memberList.length;i++){
-            temp[i] = memberList[i];
-        }
-        memberList = new Member[memberList.length+1];
-
-        for(int i = 0; i<temp.length;i++){
-            memberList[i] = temp[i];
-        }
-        memberList[memberList.length-1] = member;*/
+       
     }
 
     private static void showPaket() {

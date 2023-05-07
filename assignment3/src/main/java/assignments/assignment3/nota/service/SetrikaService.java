@@ -4,22 +4,22 @@ public class SetrikaService implements LaundryService{
     public boolean sekali = false;
     @Override
     public String doWork() {
-        // TODO
+        //jika sekali do lgsg true
         sekali = true;
         return "Sedang menyentrika...";
     }
 
     @Override
     public boolean isDone() {
-        // TODO
-        if(sekali) return true;
+        
+        if(sekali) return true; //jika sdh sls
         return false;
     }
 
     @Override
     public long getHarga(int berat) {
-        // TODO
-        long total = berat*1000;
+    
+        long total = berat*1000; //tiap berat kali 1000
         return total;
     }
 

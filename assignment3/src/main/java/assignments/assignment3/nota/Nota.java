@@ -22,37 +22,35 @@ public class Nota {
     static public int totalNota = 0 ;
 
     public Nota(Member member, int berat, String paket, String tanggalMasuk) {
-        LaundryService service = new CuciService();
-        addService(service);
+
+        LaundryService service = new CuciService(); //membuat service cuci karena laundry sudah pasti cuci
+        addService(service); //ditambahkan seperti biasa
         
         this.member = member;
         this.paket = paket ;
         this.berat = berat;
         this.tanggalMasuk = tanggalMasuk;
-        setsisaHariPengerjaaan(paket);
+        setsisaHariPengerjaaan(paket); // set sisa hari
         this.id = totalNota;
         totalNota++;
         
        
-        //TODO
+        
     }
 
     public void addService(LaundryService service){
 
-        //TODO
+        //add services
         services.add(service);
     }
 
     public String kerjakan(){
-        // TODO
+    
 
         
         for( LaundryService service : services){
-
-
-            
-            if(!service.isDone()){
-                return service.doWork();
+            if(!service.isDone()){ //jika belum selesai
+                return service.doWork(); //kerjakan servicenya
                 
             }
             else{
@@ -60,18 +58,18 @@ public class Nota {
             }
             
         }
-        this.isDone = true;
+        this.isDone = true; //set true sudah selesai
 
         
         return "Sudah Selesai";
     }
     public void toNextDay() {
-        String test = getNotaStatus();
+        String test = getNotaStatus(); // utk cek isDone
         if(isDone){
-
+            //kl selesai tdk dikurang sisa Harinya
         }
         else{
-            this.sisaHariPengerjaan-=1;
+            this.sisaHariPengerjaan-=1; //kurangin 1 tiap hr jika blm sls
         }
        
 
@@ -79,23 +77,23 @@ public class Nota {
     }
 
     public long calculateHarga(){
-        // TODO
+        
         long total = 0;
         for(LaundryService service : services){
-            total += service.getHarga(this.berat);
+            total += service.getHarga(this.berat); //tambahkan semua harga dari servicesnya
         }
-        total = total + this.baseHarga*this.berat;
+        total = total + this.baseHarga*this.berat; //tambahkan yang dari cuci juga ke total
 
         if(!this.isDone){
 
-            if(this.sisaHariPengerjaan<0){
+            if(this.sisaHariPengerjaan<0){ //tambahkan kompensasi nya
                 total = total + 2000*this.sisaHariPengerjaan;
             }
            
         }
         else{
             if(this.sisaHariPengerjaan<0){
-                total = total + 2000*this.sisaHariPengerjaan;
+                total = total + 2000*this.sisaHariPengerjaan; //kompensasi 
             }
 
         }
@@ -104,14 +102,14 @@ public class Nota {
     }
 
     public String getNotaStatus(){
-        // TODO
+    
         for(LaundryService service : services){
-            if(!service.isDone()){
+            if(!service.isDone()){ //jika blm sls
                 return "Belum Selesai";
             }
         }
         this.isDone = true;
-        return "Sudah Selesai";
+        return "Sudah Selesai"; //jika sudah selesai
 
         
     }
@@ -121,7 +119,7 @@ public class Nota {
 
     @Override
     public String toString(){
-        // TODO
+        //sesuai format
         String line1 = String.format("[ID Nota = %d]\n", this.id);
         String line2 = String.format("ID    : %s\n",member.getId());
         String line3 = String.format("Paket : %s \nHarga :\n ",this.paket);
@@ -145,28 +143,28 @@ public class Nota {
         String line5 = String.format ("tanggal terima : %s\n",this.tanggalMasuk);
         String line6 = String.format ("tanggal selesai : %s\n", tanggalSelesai);
         String serviceList = String.format("--- SERVICE LIST --- \n");
-        for(LaundryService service : services){
+        for(LaundryService service : services){ //mengatur tambahan servicenya
             String everyService = service.getServiceName();
             String line7 = String.format("-%s @ Rp. %d \n", everyService, service.getHarga(this.berat));
             serviceList = serviceList + line7;
         }
 
         String test = getNotaStatus();
-        if(!this.isDone){
-            if(this.sisaHariPengerjaan<0){
+        if(!this.isDone){ //jika blm sls
+            if(this.sisaHariPengerjaan<0){ //jika ada kompensasi
                 int hari = this.sisaHariPengerjaan *-1;
                 String kompensasi = String.format("Harga Akhir: %d Ada Kompensasi keterlambatan %d x 2000 hari \n", calculateHarga(), hari);
                 serviceList = serviceList + kompensasi;
             }
-            else{
+            else{ //jika tidak ada
                 String selesai = String.format("Harga Akhir : %d \n", calculateHarga());
                 serviceList = serviceList + selesai;
             }
             
         }
-        else{
+        else{ //jika sudah selesai
 
-            if(this.sisaHariPengerjaan<0){
+            if(this.sisaHariPengerjaan<0){ //ada kompensasi
                 int hari = this.sisaHariPengerjaan *-1;
                 String kompensasi = String.format("Harga Akhir: %d Ada Kompensasi keterlambatan %d x 2000 hari \n", calculateHarga(), hari);
                 serviceList = serviceList + kompensasi;
@@ -220,7 +218,7 @@ public class Nota {
          if(paket.equals("express")) { //set sisa hari nya brp
              
              this.hari = 1;
-             this.baseHarga = 12000;
+             this.baseHarga = 12000; //set base harganya
          }
          else if(paket.equals("fast")){
              

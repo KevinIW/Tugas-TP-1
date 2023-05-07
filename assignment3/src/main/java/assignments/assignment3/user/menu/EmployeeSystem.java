@@ -18,6 +18,8 @@ public class EmployeeSystem extends SystemCLI {
                 new Employee("Lita Duo", "gitCommitPush"),
                 new Employee("Ivan Hoshimachi", "SuamiSahSuisei"),
         }; */
+
+        // add ke arrayList memberList
         memberList.add( new Employee("Dek Depe", "akuDDP"));
         memberList.add( new Employee("Depram", "musiktualembut"));
         memberList.add( new Employee("Lita Duo", "gitCommitPush"));
@@ -35,23 +37,23 @@ public class EmployeeSystem extends SystemCLI {
         boolean logout = false;
         
         if(choice == 3){
-            return true;
+            return true; //jika 3 log out
         }
         else if(choice == 1){
             System.out.printf("Stand back! %s beginning to nyuci!\n",loginMember.getNama());
             for( Nota nota : notaList){
-               String buat = nota.kerjakan();
+               String buat = nota.kerjakan(); //setiap nota total yang ada di kerjakan sekali
                System.out.printf("Nota %d : %s \n", nota.getId() , buat);
             }
         
-            return false;
+            return false; //tidak logout
         }
         else if( choice == 2){
             for( Nota nota : notaList){
             
-                System.out.printf("Nota %d : %s \n", nota.getId(),nota.getNotaStatus());
+                System.out.printf("Nota %d : %s \n", nota.getId(),nota.getNotaStatus()); //print status semua nota
              }
-             return false;
+             return false; //tidak logout
         }
         return true;
        
