@@ -150,14 +150,18 @@ public class Nota {
         }
 
         String test = getNotaStatus();
+        long totalHarga = calculateHarga();
+        if(totalHarga <=0){
+            totalHarga = 0;
+        }
         if(!this.isDone){ //jika blm sls
             if(this.sisaHariPengerjaan<0){ //jika ada kompensasi
                 int hari = this.sisaHariPengerjaan *-1;
-                String kompensasi = String.format("Harga Akhir: %d Ada Kompensasi keterlambatan %d x 2000 hari \n", calculateHarga(), hari);
+                String kompensasi = String.format("Harga Akhir: %d Ada Kompensasi keterlambatan %d x 2000 hari \n", totalHarga, hari);
                 serviceList = serviceList + kompensasi;
             }
             else{ //jika tidak ada
-                String selesai = String.format("Harga Akhir : %d \n", calculateHarga());
+                String selesai = String.format("Harga Akhir : %d \n", totalHarga);
                 serviceList = serviceList + selesai;
             }
             
@@ -166,11 +170,11 @@ public class Nota {
 
             if(this.sisaHariPengerjaan<0){ //ada kompensasi
                 int hari = this.sisaHariPengerjaan *-1;
-                String kompensasi = String.format("Harga Akhir: %d Ada Kompensasi keterlambatan %d x 2000 hari \n", calculateHarga(), hari);
+                String kompensasi = String.format("Harga Akhir: %d Ada Kompensasi keterlambatan %d x 2000 hari \n", totalHarga, hari);
                 serviceList = serviceList + kompensasi;
             }
             else{
-                String selesai = String.format("Harga Akhir : %d \n", calculateHarga());
+                String selesai = String.format("Harga Akhir : %d \n", totalHarga);
                 serviceList = serviceList + selesai;
             }
 

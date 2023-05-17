@@ -31,7 +31,9 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
     @Override
     protected JButton[] createButtons() {
         // TODO
-        return new JButton[]{
+        JButton cuci = new JButton("It's Nyuci time");
+        JButton display = new JButton("Display List Nota");
+        return new JButton[]{cuci, display
         };
     }
 
@@ -54,7 +56,24 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void displayNota() {
+
         // TODO
+        String total = "";
+        for( Nota nota : NotaManager.notaList){
+            
+            String display = String.format("Nota %d : %s \n",nota.getId(),nota.getNotaStatus());
+            total = total + display;
+
+            
+         }
+         if(NotaManager.notaList.size() == 0){
+            total = "Belum ada nota";
+            JOptionPane.showMessageDialog(null,total,"List Nota",0);
+            return;
+         }
+         JOptionPane.showMessageDialog(null, total, "List Nota", 1);
+
+
     }
 
     /**
@@ -63,5 +82,23 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     private void cuci() {
         // TODO
+
+        String message = String.format("Stand back! %s beginning to nyuci!\n",loggedInMember.getNama());
+        JOptionPane.showMessageDialog(null, message, "It's Nyuci Time", 1);
+        String total = "";
+        for( Nota nota : NotaManager.notaList){
+            String buat = nota.kerjakan(); //setiap nota total yang ada di kerjakan sekali
+            String kerja = String.format("Nota %d : %s \n",nota.getId(),buat);
+            total = total + kerja;
+            
+         }
+         if(NotaManager.notaList.size() == 0){
+            total = "nothing to cuci here";
+            JOptionPane.showMessageDialog(null,total,"Nyuci Results",0);
+            return;
+         }
+         JOptionPane.showMessageDialog(null, total, "Nyuci Results", 1);
+
+
     }
 }

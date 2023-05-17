@@ -30,7 +30,7 @@ public class NotaGenerator {
                 String nama = input.nextLine();
 
                 System.out.print("Masukkan nomor handphone Anda: ");
-                String handphone = input.nextLine();
+                String handphone = input.next();
                 Boolean checker = true;
                 while(checker){ //check nomor HP 
                     char[] m = handphone.toCharArray(); 
