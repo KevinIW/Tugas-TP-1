@@ -41,10 +41,12 @@ public class HomeGUI extends JPanel {
      * Be creative and have fun!
      * */
     private void initGUI() {
+        //set grid bag constraint
         GridBagConstraints g = new GridBagConstraints();
         g.weighty = 1.0;
         g.insets = new Insets(2, 0, 2, 0);
 
+        // set title
         g.gridx = 1;
         g.gridy = 0;
         titleLabel = new JLabel("Selamat datang di CuciCuci System");
@@ -52,6 +54,7 @@ public class HomeGUI extends JPanel {
         titleLabel.setFont(font);
         mainPanel.add(titleLabel, g);
 
+        //set button login
         g.gridx = 1;
         g.gridy = 2;
         loginButton = new JButton("Login");
@@ -63,28 +66,31 @@ public class HomeGUI extends JPanel {
         });
         mainPanel.add(loginButton,g);
 
+        //set button register
         g.gridx = 1;
         g.gridy = 4;
         registerButton = new JButton("Register", null);
         registerButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e){
-                handleToRegister();
+                handleToRegister(); // ke void register jika dipencet
             }
             
         });
         mainPanel.add(registerButton,g);
 
+        //set ke next day
         g.gridx = 1;
         g.gridy = 6;
         toNextDayButton = new JButton("Next Day", null);
         toNextDayButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                handleNextDay();
+                handleNextDay(); //ke void next day
             }
         });
         mainPanel.add(toNextDayButton,g);
         
+        //set hari ini tanggalnya
         g.gridx = 1;
         g.gridy = 8;
         String hari = NotaManager.fmt.format(cal.getTime());
@@ -103,7 +109,7 @@ public class HomeGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "registerButton"
      * */
     private static void handleToRegister() {
-        
+    //pergi ke panel register
     MainFrame mainFrame = MainFrame.getInstance();
     mainFrame.navigateTo(RegisterGUI.KEY);
     
@@ -115,6 +121,7 @@ public class HomeGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "loginButton"
      * */
     private static void handleToLogin() {
+        //pergi ke panel ke login
         MainFrame mainFrame = MainFrame.getInstance();
         mainFrame.navigateTo(LoginGUI.KEY);
     }
@@ -124,6 +131,7 @@ public class HomeGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "toNextDayButton"
      * */
     private void handleNextDay() {
+        //maju 1 hari dan pop up kamu tidur hari ini
         NotaManager.toNextDay();
         JOptionPane.showMessageDialog(null,"Kamu tidur hari ini...zzz...");
         String hari = NotaManager.fmt.format(cal.getTime());

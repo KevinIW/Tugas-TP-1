@@ -43,34 +43,35 @@ public class LoginGUI extends JPanel {
      * Be creative and have fun!
      * */
     private void initGUI() {
-        // TODO
+        
+        //set grid nya
         GridBagConstraints g = new GridBagConstraints();
         g.anchor = GridBagConstraints.LINE_START;
         g.weighty = 1.0;
         g.insets = new Insets(2, 0, 2, 0);
-
+        //set id nya
         g.gridx = 0;
         g.gridy = 0;
         idLabel = new JLabel("Masukkan id anda: ");
         mainPanel.add(idLabel,g);
-
+        //set text field id
         g.gridx = 0;
         g.gridy = 1;
         g.ipadx = 400;
         idTextField = new JTextField();
         mainPanel.add(idTextField,g);
-
+        //set label password
         g.gridx = 0;
         g.gridy = 2;
         passwordLabel = new JLabel("Masukkan password anda: ");
         mainPanel.add(passwordLabel,g);
-
+        //set password field
         g.gridx = 0;
         g.gridy = 3;
         g.ipadx = 400;
         passwordField = new JPasswordField();
         mainPanel.add(passwordField,g);
-
+        //set button login
         g.gridx = 0;
         g.gridy = 4;
         loginButton = new JButton("Login");
@@ -80,17 +81,18 @@ public class LoginGUI extends JPanel {
             
                 String password = new String(passwordField.getPassword());
             
-                handleLogin(id,password);
+                handleLogin(id,password); // pergi ke void ini
             }
         });
         mainPanel.add(loginButton,g);
 
+        //set button kembali
         g.gridx = 0;
         g.gridy = 5;
         backButton = new JButton("Kembali");
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                handleBack();
+                handleBack(); //ke void ini
             }
             
         });
@@ -105,6 +107,7 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
+        //balik ke home
         idTextField.setText("");
         passwordField.setText("");
         MainFrame mainFrame = MainFrame.getInstance();
@@ -116,26 +119,26 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "loginButton"
      * */
     private void handleLogin(String id, String password) {
-        // TODO
-        SystemCLI syscall = loginManager.getSystem(id);
-        if(syscall == null){
+        
+        SystemCLI syscall = loginManager.getSystem(id); // ambil id
+        if(syscall == null){ // jika salah id or password
             JOptionPane.showMessageDialog(null, "Invalid id or password", "Login failed", 0);
             return;
         }
         MainFrame mainFrame = MainFrame.getInstance();
         Boolean loginis = false;
-        loginis = mainFrame.login(id, password);
+        loginis = mainFrame.login(id, password); //ambil boolean nya
         
-        if(loginis == true){
+        if(loginis == true){ //jika benar pass sama id nya
             if(syscall instanceof MemberSystem){
                 idTextField.setText("");
                 passwordField.setText("");
-                mainFrame.navigateTo(MemberSystemGUI.KEY);
+                mainFrame.navigateTo(MemberSystemGUI.KEY); // ke memberSystem
             }
             else if(syscall instanceof EmployeeSystem){
                 idTextField.setText("");
                 passwordField.setText("");
-                mainFrame.navigateTo(EmployeeSystemGUI.KEY);
+                mainFrame.navigateTo(EmployeeSystemGUI.KEY);// ke employeeSystem
             }
 
         }

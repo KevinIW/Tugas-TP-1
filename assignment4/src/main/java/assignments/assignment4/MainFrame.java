@@ -32,7 +32,6 @@ public class MainFrame extends JFrame{
 
     private MainFrame(){
         super("CuciCuciSystem");
-//        TODO: uncomment code dibawah ini setelah kamu implmentasikan addEmployee pada EmployeeSystem.
 //        // for context dari 2 employee baru ini : https://ristek.link/karyawan-baru-cucicuci
 //        employeeSystem.addEmployee(new Employee[]{
 //                new Employee("delta Epsilon Huha Huha", "ImplicitDiff"),
@@ -83,7 +82,7 @@ public class MainFrame extends JFrame{
      * @param page -> key dari halaman yang diinginkan.
      * */
     public void navigateTo(String page){
-        
+        //menggunakan card layout utk show panelnya
         cards.show(mainPanel,page);
     }
 
@@ -100,13 +99,10 @@ public class MainFrame extends JFrame{
     public boolean login(String id, String password){
         for (Loginable panel:
                 loginablePanel) {
-            if(panel.login(id, password) == true){
+            if(panel.login(id, password) == true){ //jika id sama password sama return true
                 return true;
             }
-            else
-            {
-                continue;
-            }
+            
         }
         return false;
     }

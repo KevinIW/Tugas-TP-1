@@ -43,17 +43,19 @@ public class RegisterGUI extends JPanel {
      * Be creative and have fun!
      * */
     private void initGUI() {
-        // TODO
+        //set grid bag constraint
         GridBagConstraints g = new GridBagConstraints();
         g.anchor = GridBagConstraints.LINE_START;
         g.weighty = 1.0;
         g.insets = new Insets(2, 0, 2, 0);
 
+        //set label nama
         g.gridx = 0;
         g.gridy = 0;
         nameLabel = new JLabel("Masukkan nama anda: ");
         mainPanel.add(nameLabel,g);
 
+        //set textField nama
         g.gridx = 0;
         g.gridy = 1;
         g.ipadx = 400;
@@ -61,28 +63,33 @@ public class RegisterGUI extends JPanel {
         nameTextField = new JTextField();
         mainPanel.add(nameTextField,g);
 
+        //set label HP
         g.gridx = 0;
         g.gridy = 2;
         phoneLabel = new JLabel("Masukkan nomor HP anda: ");
         mainPanel.add(phoneLabel,g);
 
+        //set textField HP
         g.gridx = 0;
         g.gridy = 3;
         g.ipadx = 400;
         phoneTextField = new JTextField();
         mainPanel.add(phoneTextField,g);
 
+        //set label password
         g.gridx = 0;
         g.gridy = 4;
         passwordLabel = new JLabel("Masukkan password anda: ");
         mainPanel.add(passwordLabel,g);
 
+        //set passwordfield
         g.gridx = 0;
         g.gridy = 5;
         g.ipadx = 400;
         passwordField = new JPasswordField();
         mainPanel.add(passwordField,g);
 
+        //set register button
         g.anchor = GridBagConstraints.CENTER;
         g.ipadx = 0;
         g.gridx = 0;
@@ -100,6 +107,7 @@ public class RegisterGUI extends JPanel {
         });
         mainPanel.add(registerButton,g);
 
+        //set button kembali
         g.gridx = 0;
         g.gridy = 7;
         backButton = new JButton("Kembali");
@@ -125,6 +133,7 @@ public class RegisterGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
+        //pergi ke panel home
         MainFrame mainFrame = MainFrame.getInstance();
         mainFrame.navigateTo(HomeGUI.KEY);
     }
@@ -134,12 +143,13 @@ public class RegisterGUI extends JPanel {
     * Akan dipanggil jika pengguna menekan "registerButton"
     * */
     private void handleRegister(String nama, String noHp, String password) {
-
+        //jika empty
         if(nama.equals("") || noHp.equals("") || password.equals("")){
             JOptionPane.showMessageDialog(null, "Semua field diatas harus disi", "Empty Field", 0);
             return;
         }
         long nomor = 0;
+        //validasi nomor
         try{
             nomor = Long.parseLong(noHp);
         }
@@ -147,13 +157,13 @@ public class RegisterGUI extends JPanel {
             JOptionPane.showMessageDialog(null, "Nomor handphone harus berisi angka !!!","Invalid Phone Number" , 0);
             return;
         }
-        Member member = loginManager.register(nama,noHp,password);
-        if(member == null){
+        Member member = loginManager.register(nama,noHp,password); // register
+        if(member == null){ //jika sudah ada id nya
             String total = String.format("User dengan nama %s dan no HP %s sudah ada", nama, noHp);
             JOptionPane.showMessageDialog(null, total, "Registration failed", 0);
             
         }
-        else{
+        else{ //berhasil
             String berhasil = String.format("Berhasil membuat user dengan ID %s", member.getId());
             JOptionPane.showMessageDialog(null, berhasil, "Registration successfull", 1);
             
@@ -162,7 +172,7 @@ public class RegisterGUI extends JPanel {
         phoneTextField.setText("");
         passwordField.setText("");
         MainFrame mainFrame = MainFrame.getInstance();
-        mainFrame.navigateTo(HomeGUI.KEY);
+        mainFrame.navigateTo(HomeGUI.KEY); //balik ke home
         
 
 

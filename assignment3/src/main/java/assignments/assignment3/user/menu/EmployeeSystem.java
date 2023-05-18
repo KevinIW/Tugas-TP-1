@@ -24,6 +24,8 @@ public class EmployeeSystem extends SystemCLI {
         memberList.add( new Employee("Depram", "musiktualembut"));
         memberList.add( new Employee("Lita Duo", "gitCommitPush"));
         memberList.add( new Employee("Ivan Hoshimachi", "SuamiSahSuisei"));
+        memberList.add(new Employee("delta Epsilon Huha Huha", "ImplicitDiff"));
+        memberList.add(new Employee("Regret", "FansBeratKanaArima"));
     }
 
     /**
