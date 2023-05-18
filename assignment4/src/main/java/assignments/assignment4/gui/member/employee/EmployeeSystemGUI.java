@@ -30,7 +30,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     @Override
     protected JButton[] createButtons() {
-        // TODO
+        // set buttonnya
         JButton cuci = new JButton("It's Nyuci time");
         JButton display = new JButton("Display List Nota");
         return new JButton[]{cuci, display
@@ -57,7 +57,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     private void displayNota() {
 
-        // TODO
+        // display semua nota dengan loop
         String total = "";
         for( Nota nota : NotaManager.notaList){
             
@@ -66,11 +66,12 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
 
             
          }
-         if(NotaManager.notaList.size() == 0){
+         if(NotaManager.notaList.size() == 0){ //jika belum ada nota
             total = "Belum ada nota";
             JOptionPane.showMessageDialog(null,total,"List Nota",0);
             return;
          }
+         //jika ada nota
          JOptionPane.showMessageDialog(null, total, "List Nota", 1);
 
 
@@ -81,10 +82,11 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button kedua pada createButtons
      * */
     private void cuci() {
-        // TODO
-
+        
+        //show stand back
         String message = String.format("Stand back! %s beginning to nyuci!\n",loggedInMember.getNama());
         JOptionPane.showMessageDialog(null, message, "It's Nyuci Time", 1);
+        //cuci nota nota yang ada
         String total = "";
         for( Nota nota : NotaManager.notaList){
             String buat = nota.kerjakan(); //setiap nota total yang ada di kerjakan sekali
@@ -92,11 +94,12 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
             total = total + kerja;
             
          }
-         if(NotaManager.notaList.size() == 0){
+         if(NotaManager.notaList.size() == 0){ //jika blm pernah cuci
             total = "nothing to cuci here";
             JOptionPane.showMessageDialog(null,total,"Nyuci Results",0);
             return;
          }
+         //jika sudah pernah cuci
          JOptionPane.showMessageDialog(null, total, "Nyuci Results", 1);
 
 
